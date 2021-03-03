@@ -246,7 +246,7 @@ public class Game1 : Game
             this.level = this.clear / 5 + 1;
             this.speed = (0.10f * (this.level - 1));
             if (this.level < 4)
-                this.speed = 1.8f + (0.0333f * (this.level - 1));
+                this.speed = 1.8f + (0.0667f * (this.level - 1));
             else
                 this.speed = 2.0f;
             this.Window.Title = "Level: " + this.level + " Line: " + this.clear;
