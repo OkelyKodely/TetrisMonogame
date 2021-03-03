@@ -17,6 +17,7 @@ public class Game1 : Game
     private int row = -4;
     private int column = 5;
     float timeSinceLastDown = 0f;
+    float timeSinceLastColorChangeBg = 0f;
     int level = 1;
     int clear = 0;
     float speed = 0.0f;
@@ -84,7 +85,36 @@ public class Game1 : Game
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
-        GraphicsDevice.Clear(Color.Gray);
+        timeSinceLastColorChangeBg += (float)gameTime.ElapsedGameTime.TotalSeconds;
+        Color color = Color.Blue;
+        if (timeSinceLastColorChangeBg > 0.1f)
+        {
+            System.Random random = new System.Random();
+            int val = random.Next(10);
+            if (val == 0)
+                color = Color.Blue;
+            else if (val == 1)
+                color = Color.Yellow;
+            else if (val == 2)
+                color = Color.Red;
+            else if (val == 3)
+                color = Color.Orange;
+            else if (val == 4)
+                color = Color.Green;
+            else if (val == 5)
+                color = Color.Purple;
+            else if (val == 6)
+                color = Color.YellowGreen;
+            else if (val == 7)
+                color = Color.Gray;
+            else if (val == 8)
+                color = Color.White;
+            else if (val == 9)
+                color = Color.Beige;
+            color = Color.DodgerBlue;
+            timeSinceLastColorChangeBg = 0f;
+            GraphicsDevice.Clear(color);
+        }
         
         // Before handling input
         _currentKeyboardState = Keyboard.GetState();
